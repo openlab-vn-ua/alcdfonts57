@@ -5,6 +5,21 @@
 // Actual font matrix 5x8 (with lcd software uses 6x8 cell spacing), 
 // but it called everywhere 5x7 for historical reasons
 
+// This font is composed from:
+// - The original CP437 font from the Adafruit GFX library.
+//   Characters in the range 0x00–0x7F are kept unchanged from the default CP437 font.
+// - Bulgarian Cyrillic glyphs from:
+//   https://github.com/alexptbg/Adafruit-GFX-Library-BG
+//   These glyphs were shifted to their corresponding Windows-1251 code points.
+// - Additional Windows-1251 characters added by the author,
+//   including missing letters, punctuation marks, and symbols.
+// - Code point 0x98 is unassigned in the original Windows-1251 encoding
+//   and is intentionally left as an empty space.
+//
+// Designing complex glyphs within a tiny pixel matrix is difficult.
+// Some characters may look unusual. If you find a glyph that looks wrong,
+// or have a better design suggestion, please let the author know.
+
 // <afont57>
 // Drop-in replacement gfxfont that works like default fixed font
 // Obeys same convention with top-left corner char coord
@@ -964,35 +979,35 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00000001,
     0b01111111,
     0b01001001,
-    0b00110001), // [U+0402] UC Cyr hard TE
+    0b00110001), // [U+0402] UC Cyr DJE
 
     // 0x81 129
  FC(0b01111110,
     0b00000010,
     0b00000011,
     0b00000010,
-    0b00000010), // [U+0403] UC Cyr hard GHE umlaut
+    0b00000010), // [U+0403] UC Cyr GJE
 
     // 0x82 130
- FC(0b00111000,
-    0b01010100,
-    0b01010100,
-    0b01010101,
-    0b01011001),
+ FC(0b00000000,
+    0b10000000,
+    0b01110000,
+    0b00000000,
+    0b00000000), // [U+201A] single low-9 quotation mark
 
     // 0x83 131
  FC(0b01111100,
     0b00000100,
     0b00000110,
     0b00000100,
-    0b00000100), // [U+0453] LC Cyr hard GHE umlaut
+    0b00000100), // [U+0453] LC Cyr gje
 
     // 0x84 132
- FC(0b00100010,
-    0b01010100,
-    0b01010100,
-    0b01111000,
-    0b01000010),
+ FC(0b10000000,
+    0b01110000,
+    0b00000000,
+    0b10000000,
+    0b01110000), // [U+201E] double low-9 quotation mark
 
     // 0x85 133
  FC(0b01100000,
@@ -1023,11 +1038,11 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00100010), // [U+20AC] euro sign
 
     // 0x89 137
- FC(0b00111001,
-    0b01010100,
-    0b01010100,
-    0b01010100,
-    0b01011001),
+ FC(0b01100010,
+    0b10110101,
+    0b01001010,
+    0b10100100,
+    0b01000010), // [U+2030] per mille sign
 
     // 0x8a 138
  FC(0b01110000,
@@ -1062,14 +1077,14 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00000001,
     0b01111111,
     0b00001001,
-    0b01110001), // [U+040B] LC Cyr hard TE
+    0b01110001), // [U+040B] LC Cyr TSHE
 
     // 0x8f 143
  FC(0b01111111,
     0b01000000,
     0b11000000,
     0b01000000,
-    0b01111111), // [U+040F] UC Cyr DZHE
+    0b01111111), // [U+040F] UC Cyr dje
 
     // 0x90 144
  FC(0b01111111,
@@ -1079,53 +1094,53 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01110000), // [U+0452] LC Cyr hard TE
 
     // 0x91 145
- FC(0b00100000,
-    0b01010100,
-    0b01010100,
-    0b01111100,
-    0b01010100),
+ FC(0b00000000,
+    0b00000000,
+    0b00001110,
+    0b00000001,
+    0b00000000), // [U+2018] left single quotation mark
 
     // 0x92 146
- FC(0b01111100,
-    0b00001010,
-    0b00001001,
-    0b01111111,
-    0b01001001),
+ FC(0b00000000,
+    0b00001000,
+    0b00000111,
+    0b00000000,
+    0b00000000), // [U+2019] right single quotation mark
 
     // 0x93 147
- FC(0b00110010,
-    0b01001001,
-    0b01001001,
-    0b01001001,
-    0b00110010),
+ FC(0b00001110,
+    0b00000001,
+    0b00000000,
+    0b00001110,
+    0b00000001), // [U+201C] left double quotation mark
 
     // 0x94 148
- FC(0b00111010,
-    0b01000100,
-    0b01000100,
-    0b01000100,
-    0b00111010),
+ FC(0b00001000,
+    0b00000111,
+    0b00000000,
+    0b00001000,
+    0b00000111), // [U+201D] right double quotation mark
 
     // 0x95 149
- FC(0b00110010,
-    0b01001010,
-    0b01001000,
-    0b01001000,
-    0b00110000),
+ FC(0b00000000,
+    0b00011000,
+    0b00111100,
+    0b00011000,
+    0b00000000), // [U+2022] bullet
 
     // 0x96 150
- FC(0b00111010,
-    0b01000001,
-    0b01000001,
-    0b00100001,
-    0b01111010),
+ FC(0b00000000,
+    0b00010000,
+    0b00010000,
+    0b00010000,
+    0b00000000), // [U+2013] en dash
 
     // 0x97 151
- FC(0b00111010,
-    0b01000010,
-    0b01000000,
-    0b00100000,
-    0b01111000),
+ FC(0b00010000,
+    0b00010000,
+    0b00010000,
+    0b00010000,
+    0b00010000), // [U+2014] em dash
 
     // 0x98 152
  FC(0b00000000,
@@ -1160,7 +1175,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00010000,
     0b01111100,
     0b01010000,
-    0b00100000), // [U+045A] LC Cyr hard HE
+    0b00100000), // [U+045A] LC Cyr nje
 
     // 0x9d 157
  FC(0b01111100,
@@ -1174,7 +1189,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00010010,
     0b00001010,
     0b00001000,
-    0b01110000), // [U+045B] LC Cyr hard TE
+    0b01110000), // [U+045B] LC Cyr tshe
 
     // 0x9f 159
  FC(0b01111100,
@@ -1188,7 +1203,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00000000,
     0b00000000,
     0b00000000,
-    0b00000000), // [U+00A0] NBSP
+    0b00000000), // [U+00A0] non-breaking space (alt space) NBSP
 
     // 0xa1 161
  FC(0b01000111,
@@ -1230,7 +1245,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00000000,
     0b01110111,
     0b00000000,
-    0b00000000), // [U+00A6] Huge |
+    0b00000000), // [U+00A6] broken bar (huge |)
 
     // 0xa7 167
  FC(0b00000000,
@@ -1244,7 +1259,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01001011,
     0b01001010,
     0b01001011,
-    0b01000010), // [U+0451] UC Rus E umlaut
+    0b01000010), // [U+0401] UC Cyr YO (Rus E umlaut)
 
     // 0xa9 169
  FC(0b00111110,
@@ -1258,7 +1273,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01001001,
     0b01001001,
     0b01000001,
-    0b00100010), // [U+0454] UC Ukr soft E
+    0b00100010), // [U+0404] UC Cyr IE (Ukr soft IE)
 
     // 0xab 171
  FC(0b00001000,
@@ -1272,21 +1287,21 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00001000,
     0b00001000,
     0b00001000,
-    0b00111000), // [U+00AC] top right cover
+    0b00111000), // [U+00AC] not sign
 
     // 0xad 173
  FC(0b00000000,
     0b00000000,
     0b00000000,
     0b00000000,
-    0b00000000), // [U+00AD] SBSP
+    0b00000000), // [U+00AD] soft hyphen (alt space) SBSP
 
     // 0xae 174
  FC(0b00111110,
     0b01010101,
     0b01101001,
     0b01000001,
-    0b00111110), // [U+00AE] registered
+    0b00111110), // [U+00AE] registered sign
 
     // 0xaf 175
  FC(0b00000000,
@@ -1307,7 +1322,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01000100,
     0b01011111,
     0b01000100,
-    0b01000100), // [U+00B1] +/- sign
+    0b01000100), // [U+00B1] plus-minus sign
 
     // 0xb2 178
  FC(0b00000000,
@@ -1335,14 +1350,14 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01111110,
     0b00100000,
     0b00011110,
-    0b00100000), // [U+00B5] mu
+    0b00100000), // [U+00B5] micro sign
 
     // 0xb6 182
  FC(0b00000110,
     0b00001001,
     0b01111111,
     0b00000001,
-    0b01111111), // [U+00B6] Backnote sign (?)
+    0b01111111), // [U+00B6] pilcrow sign
 
     // 0xb7 183
  FC(0b00000000,
@@ -1363,7 +1378,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b00010000,
     0b00100110,
     0b01111001,
-    0b00001110), // [U+2116] Number sign (LQ)
+    0b00001110), // [U+2116] numero sign
 
     // 0xba 186
  FC(0b00111000,
@@ -1391,14 +1406,14 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01001001,
     0b01001001,
     0b01001001,
-    0b00110010), // [U+0405] UC Cyr S
+    0b00110010), // [U+0405] UC Cyr DZE
 
     // 0xbe 190
  FC(0b01001000,
     0b01010100,
     0b01010100,
     0b01010100,
-    0b00100100), // [U+0455] LC Cyr s
+    0b00100100), // [U+0455] LC Cyr dze
 
     // 0xbf 191
  FC(0b00000000,
@@ -1419,7 +1434,7 @@ static inline const uint8_t alcdfont57cp1251Bitmaps[] PROGMEM = {
     0b01001001,
     0b01001001,
     0b01001001,
-    0b00110011), // U+0411] UC Cyr BE
+    0b00110011), // [U+0411] UC Cyr BE
 
     // 0xc2 194
  FC(0b01111111,
